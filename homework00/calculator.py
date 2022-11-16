@@ -45,7 +45,6 @@ def match_case_calc_with_two_numbers(num_1: float, num_2: float, command: str) -
             return math.log(num_1, num_2)
         case _:
             return f"Unknown operator: {command!r}."
-    return f"Unknown operator: {command!r}."
 def match_case_calc_with_one_number(num_1: float, command: str) -> tp.Union[float, str]:
     match command:
         case "sin":
