@@ -60,8 +60,6 @@ def match_case_calc_with_one_number(num_1: float, command: str) -> tp.Union[floa
             return math.log10(num_1)
         case _:
             return f"Unknown operator: {command!r}."
-
-
 if __name__ == "__main__":
     for_one_number = ["sin", "cos", "tan", "log", "lg"]
     for_two_numbers = ["+", "-", "*", "/", "**", "log"]
