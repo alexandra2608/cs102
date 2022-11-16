@@ -1,4 +1,3 @@
-#  PUT YOUR CODE HERE
 # -*- coding: utf-8 -*-
 import math
 import typing as tp
