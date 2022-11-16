@@ -49,6 +49,7 @@ def match_case_calc_with_two_numbers(num_1: float, num_2: float, command: str) -
             return math.log(num_1, num_2)
         case _:
             return f"Unknown operator: {command!r}."
+    return f"Unknown operator: {command!r}."
 
 
 def match_case_calc_with_one_number(num_1: float, command: str) -> tp.Union[float, str]:
@@ -67,17 +68,17 @@ def match_case_calc_with_one_number(num_1: float, command: str) -> tp.Union[floa
             return f"Unknown operator: {command!r}."
 
 
-if name == "main":
+if __name__ == "__main__":
     for_one_number = ["sin", "cos", "tan", "log", "lg"]
     for_two_numbers = ["+", "-", "*", "/", "**", "log"]
     while True:
-        COMMAND = input("Введите операцию > ")
+        COMMAND = input("Enter command > ")
         if COMMAND.isdigit() and int(COMMAND) == 0:
             break
         if COMMAND in for_two_numbers:
-            NUM_1 = float(input("Первое число > "))
-            NUM_2 = float(input("Второе число > "))
+            NUM_1 = float(input("First number > "))
+            NUM_2 = float(input("Second number > "))
             print(match_case_calc_with_two_numbers(NUM_1, NUM_2, COMMAND))
         elif COMMAND in for_one_number:
-            NUM_1 = float(input("Число > "))
+            NUM_1 = float(input("Number > "))
             print(match_case_calc_with_one_number(NUM_1, COMMAND))
