@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import math
 import typing as tp
+
+
 def calculator(num_1: float, num_2: float, command: str) -> tp.Union[float, str]:
     if command == "+":
         return num_1 + num_2  # sum
@@ -30,6 +32,8 @@ def calculator(num_1: float, num_2: float, command: str) -> tp.Union[float, str]
     if command == "lg":
         return math.log10(num_1)
     return f"Unknown operator: {command!r}."
+
+
 def match_case_calc_with_two_numbers(num_1: float, num_2: float, command: str) -> tp.Union[float, str]:
     match command:
         case "+":
@@ -47,6 +51,8 @@ def match_case_calc_with_two_numbers(num_1: float, num_2: float, command: str) -
         case _:
             return f"Unknown operator: {command!r}."
     return f"Unknown operator: {command!r}."
+
+
 def match_case_calc_with_one_number(num_1: float, command: str) -> tp.Union[float, str]:
     match command:
         case "sin":
@@ -61,6 +67,8 @@ def match_case_calc_with_one_number(num_1: float, command: str) -> tp.Union[floa
             return math.log10(num_1)
         case _:
             return f"Unknown operator: {command!r}."
+
+
 if __name__ == "__main__":
     for_one_number = ["sin", "cos", "tan", "log", "lg"]
     for_two_numbers = ["+", "-", "*", "/", "**", "log"]
