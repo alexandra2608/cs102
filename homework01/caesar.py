@@ -12,14 +12,7 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     """
     ciphertext = ""
     # PUT YOUR CODE HERE
-    for i in range(len(plaintext)):
-        char = plaintext[i]
-        if char in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
-            ciphertext += chr((ord(char) + shift - 64) % 26 + 65)
-        elif char in 'abcdefghijklmnopqrstuvwxyz':
-            ciphertext += chr((ord(char) + shift - 96) % 26 + 97)    
     return ciphertext
-
 
 def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     """
@@ -34,11 +27,5 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     ''
     """
     plaintext = ""
-    # PUT YOUR CODE HERE
-    for i in range(len(ciphertext)):
-        char = ciphertext[i]
-        if char in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
-            plaintext += chr((ord(char) - shift - 64) % 26 + 65)
-        elif char in 'abcdefghijklmnopqrstuvwxyz':
-            plaintext += chr((ord(char) - shift - 96) % 26 + 97)    
+    # PUT YOUR CODE HERE      
     return plaintext
