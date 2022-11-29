@@ -1,5 +1,25 @@
+# -*- coding: utf-8 -*-
 import math
 import typing as tp
+
+
+def checking_input(num_1: str) -> float:
+    if type(num_1) == float:
+        return float(value)
+    elif type(value) == int:
+        return float(value)
+    else:
+        return checking_input(input("Повторите попытку > "))
+    return value
+
+def convert(num_1: int, b: int) -> int:
+    result = 0
+    n = 1
+    while num_1 > 0:
+        result += (num_1 % b) * n
+        n *= 10
+        num_1 //= b
+    return result
 
 
 def calculator(num_1: float, num_2: float, command: str) -> tp.Union[float, str]:
@@ -12,8 +32,7 @@ def calculator(num_1: float, num_2: float, command: str) -> tp.Union[float, str]
     if command == "/":  # divide
         if num_2 != 0:
             return num_1 / num_2
-        else:
-            return "You can't divide by zero, enter another number"
+        return "You can't divide by zero, enter another number"
     if command == "":  # degree
         return num_1**num_2
     if command == "log":
@@ -82,3 +101,4 @@ if __name__ == "__main__":
         elif COMMAND in for_one_number:
             NUM_1 = float(input("Number > "))
             print(match_case_calc_with_one_number(NUM_1, COMMAND))
+
