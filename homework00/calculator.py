@@ -1,5 +1,26 @@
+# -*- coding: utf-8 -*-
 import math
 import typing as tp
+
+
+def checking_input(num_1: str) -> float:
+    if type(num_1) == float:
+        return float(value)
+    elif type(value) == int:
+        return float(value)
+    else:
+        return checking_input(input("Повторите попытку > "))
+    return value
+
+def convert(num_1: int, b: int) -> int:
+    result = 0
+    n = 1
+    while num_1 > 0:
+        result += (num_1 % b) * n
+        n *= 10
+        num_1 //= b
+    return result
+
 
 def calculator(num_1: float, num_2: float, command: str) -> tp.Union[float, str]:
     if command == "+":
@@ -11,9 +32,8 @@ def calculator(num_1: float, num_2: float, command: str) -> tp.Union[float, str]
     if command == "/":  # divide
         if num_2 != 0:
             return num_1 / num_2
-        else:
-            return "You can't divide by zero, enter another number"
-    if command == "**":  # degree
+        return "You can't divide by zero, enter another number"
+    if command == "":  # degree
         return num_1**num_2
     if command == "log":
         return math.log(num_1, num_2)
@@ -31,6 +51,7 @@ def calculator(num_1: float, num_2: float, command: str) -> tp.Union[float, str]
         return math.log10(num_1)
     return f"Unknown operator: {command!r}."
 
+
 def match_case_calc_with_two_numbers(num_1: float, num_2: float, command: str) -> tp.Union[float, str]:
     match command:
         case "+":
@@ -41,13 +62,15 @@ def match_case_calc_with_two_numbers(num_1: float, num_2: float, command: str) -
             return num_1 * num_2
         case "/" if num_2 != 0:
             return num_1 / num_2
-        case "**":
+        case "":
             return num_1**num_2
         case "log":
             return math.log(num_1, num_2)
         case _:
             return f"Unknown operator: {command!r}."
     return f"Unknown operator: {command!r}."
+
+
 def match_case_calc_with_one_number(num_1: float, command: str) -> tp.Union[float, str]:
     match command:
         case "sin":
@@ -62,19 +85,20 @@ def match_case_calc_with_one_number(num_1: float, command: str) -> tp.Union[floa
             return math.log10(num_1)
         case _:
             return f"Unknown operator: {command!r}."
-    return f"Unknown operator: {command!r}."
+
 
 if __name__ == "__main__":
     for_one_number = ["sin", "cos", "tan", "log", "lg"]
     for_two_numbers = ["+", "-", "*", "/", "**", "log"]
     while True:
-        COMMAND = input("Введите операцию > ")
+        COMMAND = input("Enter command > ")
         if COMMAND.isdigit() and int(COMMAND) == 0:
             break
         if COMMAND in for_two_numbers:
-            NUM_1 = float(input("Первое число > "))
-            NUM_2 = float(input("Второе число > "))
+            NUM_1 = float(input("First number > "))
+            NUM_2 = float(input("Second number > "))
             print(match_case_calc_with_two_numbers(NUM_1, NUM_2, COMMAND))
         elif COMMAND in for_one_number:
-            NUM_1 = float(input("Число > "))
+            NUM_1 = float(input("Number > "))
             print(match_case_calc_with_one_number(NUM_1, COMMAND))
+
