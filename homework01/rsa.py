@@ -12,16 +12,12 @@ def is_prime(n: int) -> bool:
     >>> is_prime(8)
     False
     """
-
-
     if n <= 1:
         return False
     for i in range(2, int(n // 2) + 1):
         if n % i == 0:
             return False
-    else:
-        return True
-
+    return True
 
 
 def gcd(a: int, b: int) -> int:
@@ -32,13 +28,11 @@ def gcd(a: int, b: int) -> int:
     >>> gcd(3, 7)
     1
     """
-
-
-    if b != 0:
-        return gcd(b, a % b)
-    else:
-        return abs(a)
-
+    if b == 0:
+        return a
+    while a % b != 0:
+        a, b = b, a % b
+    return b
 
 
 def multiplicative_inverse(e: int, phi: int) -> int:
@@ -48,10 +42,13 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     >>> multiplicative_inverse(7, 40)
     23
     """
-
-
-    return pow(e, -1, phi)
-
+    a, b = phi, e
+    x, y = 0, 1
+    while b:
+        divide = a // b
+        a, b = b, a % b
+        x, y = y, x - y * divide
+    return x % phi
 
 
 def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
@@ -60,10 +57,7 @@ def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[in
     elif p == q:
         raise ValueError("p and q cannot be equal")
 
-
-
     n = p * q
-
     phi = (p - 1) * (q - 1)
 
     # Choose an integer e such that e and phi(n) are coprime
@@ -97,7 +91,7 @@ def decrypt(pk: tp.Tuple[int, int], ciphertext: tp.List[int]) -> str:
     # Unpack the key into its components
     key, n = pk
     # Generate the plaintext based on the ciphertext and key using a^b mod m
-    plain = [chr((char ** key) % n) for char in ciphertext]
+    plain = [chr((char**key) % n) for char in ciphertext]
     # Return the array of bytes as a string
     return "".join(plain)
 
@@ -114,5 +108,5 @@ if __name__ == "__main__":
     print("Your encrypted message is: ")
     print("".join(map(lambda x: str(x), encrypted_msg)))
     print("Decrypting message with public key ", public, " . . .")
+    print("Your message is:")
     print(decrypt(public, encrypted_msg))
-
