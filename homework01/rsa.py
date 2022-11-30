@@ -13,6 +13,7 @@ def is_prime(n: int) -> bool:
     False
     """
 
+
     if n <= 1:
         return False
     for i in range(2, int(n // 2) + 1):
@@ -20,6 +21,7 @@ def is_prime(n: int) -> bool:
             return False
     else:
         return True
+
 
 
 def gcd(a: int, b: int) -> int:
@@ -31,10 +33,12 @@ def gcd(a: int, b: int) -> int:
     1
     """
 
+
     if b != 0:
         return gcd(b, a % b)
     else:
         return abs(a)
+
 
 
 def multiplicative_inverse(e: int, phi: int) -> int:
@@ -45,7 +49,9 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     23
     """
 
+
     return pow(e, -1, phi)
+
 
 
 def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
@@ -53,6 +59,7 @@ def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[in
         raise ValueError("Both numbers must be prime.")
     elif p == q:
         raise ValueError("p and q cannot be equal")
+
 
 
     n = p * q
@@ -90,9 +97,7 @@ def decrypt(pk: tp.Tuple[int, int], ciphertext: tp.List[int]) -> str:
     # Unpack the key into its components
     key, n = pk
     # Generate the plaintext based on the ciphertext and key using a^b mod m
-
     plain = [chr((char ** key) % n) for char in ciphertext]
-
     # Return the array of bytes as a string
     return "".join(plain)
 
@@ -109,6 +114,5 @@ if __name__ == "__main__":
     print("Your encrypted message is: ")
     print("".join(map(lambda x: str(x), encrypted_msg)))
     print("Decrypting message with public key ", public, " . . .")
-    print("Your message is:")
-
     print(decrypt(public, encrypted_msg))
+

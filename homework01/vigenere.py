@@ -10,6 +10,7 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     """
     ciphertext = ""
 
+
     for pos, letter in enumerate(plaintext):
         if letter.isupper():
             ciphertext += chr(ord("A") + (ord(letter) + (ord(keyword[pos % len(keyword)]) - 2 * ord("A"))) % 26)
@@ -17,7 +18,6 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
             ciphertext += chr(ord("a") + (ord(letter) + (ord(keyword[pos % len(keyword)]) - 2 * ord("a"))) % 26)
         else:
             ciphertext += letter
-
     return ciphertext
 
 
