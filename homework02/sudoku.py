@@ -75,22 +75,13 @@ def get_block(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[s
     >>> get_block(grid, (8, 8))
     ['2', '8', '.', '.', '.', '5', '.', '7', '9']
     """
-    sqr = [0, 0]
-    if pos[0] < 3:
-        sqr[0] = 0
-    elif 2 < pos[0] < 6:
-        sqr[0] = 3
-    else:
-        sqr[0] = 6
-    if pos[1] < 3:
-        sqr[1] = 0
-    elif 2 < pos[1] < 6:
-        sqr[1] = 3
-    else:
-        sqr[1] = 6
-
-    values = [grid[i][j] for i in range(sqr[0], sqr[0] + 3) for j in range(sqr[1], sqr[1] + 3)]
-    return values
+    block = 3
+    sqr = []
+    row = (pos[0] // block) * block
+    col = (pos[1] // block) * block
+    for i in range(row, row + block):
+        sqr.extend(grid[i][col : col + block])
+    return sqr
 
 
 def find_empty_positions(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.Tuple[int, int]]:
@@ -105,7 +96,7 @@ def find_empty_positions(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.Tuple[in
     for i in range(len(grid)):
         for j in range(len(grid[i])):
             if grid[i][j] == ".":
-                return (i, j)
+                return i, j
     return None
 
 
@@ -119,12 +110,7 @@ def find_possible_values(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -
     >>> values == {'2', '5', '9'}
     True
     """
-    return (
-        {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
-        - set(get_row(grid, pos))
-        - set(get_col(grid, pos))
-        - set(get_block(grid, pos))
-    )
+    return set("123456789") - set(get_row(grid, pos)) - set(get_col(grid, pos)) - set(get_block(grid, pos))
 
 
 def solve(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.List[tp.List[str]]]:
@@ -187,10 +173,7 @@ def generate_sudoku(N: int):
     True
     """
     grid = solve([["."] * 9 for i in range(9)])
-    if N > 81:
-        N = 0
-    else:
-        N = 81 - N
+    N = 0 if N > 81 else 81 - N
 
     while N:
         column = random.randint(0, 8)
