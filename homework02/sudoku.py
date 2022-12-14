@@ -119,7 +119,12 @@ def find_possible_values(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -
     >>> values == {'2', '5', '9'}
     True
     """
-    return ({"1", "2", "3", "4", "5", "6", "7", "8", "9"} - set(get_row(grid, pos)) - set(get_col(grid, pos)) - set(get_block(grid, pos)))
+    return (
+        {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
+        - set(get_row(grid, pos))
+        - set(get_col(grid, pos))
+        - set(get_block(grid, pos))
+    )
 
 
 def solve(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.List[tp.List[str]]]:
