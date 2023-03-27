@@ -61,7 +61,7 @@ class GUI(UI):
 
         pause = False
         running = True
-        while (running and (self.life.is_max_generations_exceeded is False) and (self.life.is_changing is True)):
+        while running and (self.life.is_max_generations_exceeded is False) and (self.life.is_changing is True):
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False

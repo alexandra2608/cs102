@@ -30,7 +30,9 @@ class GameOfLife:
 
     def create_grid(self, randomize: bool = False) -> Grid:
         # Copy from previous assignment
-        field = [[random.randint(0, 1) if randomize else 0 for j in range(self.cols)] for i in range(self.rows)]
+        field = [
+            [random.randint(0, 1) if randomize else 0 for j in range(self.cols)] for i in range(self.rows)
+        ]
 
         return field
 
