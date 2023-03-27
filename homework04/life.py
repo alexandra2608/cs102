@@ -111,7 +111,7 @@ class GameOfLife:
         Прочитать состояние клеток из указанного файла.
         """
         grid = []
-        with open(filename, "r", encoding="utf-8") as f:
+        with open(filename, "r") as f:
             grid = [[int(j) for j in i.strip()] for i in f]
 
         life = GameOfLife((len(grid), len(grid[0])))

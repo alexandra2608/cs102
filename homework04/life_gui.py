@@ -1,7 +1,6 @@
 import pygame
-from pygame.locals import *
-
 from life import GameOfLife
+from pygame.locals import *
 from ui import UI
 
 
@@ -57,51 +56,41 @@ class GUI(UI):
         pygame.display.set_caption("Game of Life")
         self.screen.fill(pygame.Color("white"))
 
+        # Создание списка клеток
+        self.life.create_grid(randomize=True)
+
+        pause = False
         running = True
-
-        paused = clicked = False
-
-        while running and not self.life.is_max_generations_exceeded:
-
+        while (running and (self.life.is_max_generations_exceeded is False) and (self.life.is_changing is True)):
             for event in pygame.event.get():
-
                 if event.type == pygame.QUIT:
                     running = False
+                elif event.type == pygame.KEYDOWN:
+                    pause = not pause
+                elif event.type == pygame.MOUSEBUTTONUP:
+                    i, j = event.pos
+                    i = i // self.cell_size
+                    j = j // self.cell_size
+                    if self.life.curr_generation[j][i] == 0:
+                        self.life.curr_generation[j][i] = 1
+                    else:
+                        self.life.curr_generation[j][i] = 0
+                    self.draw_grid()
+                    pygame.display.flip()
+            if pause:
+                self.draw_grid()
+                self.draw_lines()
+                pygame.display.flip()
+                continue
 
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                    paused = not paused
-
-                if not self.life.is_changing:
-                    paused = True
-
-                if paused and event.type == pygame.MOUSEBUTTONDOWN:
-                    clicked = True
-
-                    click_y, click_x = pygame.mouse.get_pos()
-
-            if paused:
-
-                if clicked:
-                    prev_cell_state = self.life.curr_generation[click_y // self.cell_size][click_x // self.cell_size]
-
-                    self.life.curr_generation[click_y // self.cell_size][click_x // self.cell_size] = (
-                        0 if prev_cell_state == 1 else 1
-                    )
-
-                    clicked = False
-
-            else:
-
-                self.life.step()
-
+            # Отрисовка списка клеток
+            # Выполнение одного шага игры (обновление состояния ячеек)
             self.draw_grid()
-
             self.draw_lines()
+            self.life.step()
 
             pygame.display.flip()
-
             clock.tick(self.speed)
-
         pygame.quit()
 
 
