@@ -70,9 +70,7 @@ class GameOfLife:
                     buffer[y][x] = 1 if nei_len == 3 else 0
                 else:
                     buffer[y][x] = 1 if nei_len in (2, 3) else 0
-        field = buffer
-        # assert isinstance(field, object)
-        return field
+        return buffer
 
     def step(self) -> None:
         """

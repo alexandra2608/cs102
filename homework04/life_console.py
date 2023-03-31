@@ -33,6 +33,7 @@ class Console(UI):
 
 
 if __name__ == "__main__":
-    game = GameOfLife(size=(24, 80), randomize=True, max_generations=100)
-    console = Console(life=game)
-    console.run()
+    life = GameOfLife((24, 80), max_generations=100)
+    ui = Console(life)
+    ui.run()
+

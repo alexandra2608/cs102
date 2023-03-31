@@ -162,8 +162,7 @@ class GameOfLife:
                     buffer[y][x] = 1 if nei_len == 3 else 0
                 else:
                     buffer[y][x] = 1 if nei_len in (2, 3) else 0
-        field = buffer
-        return field
+        return buffer
 
 
 if __name__ == "__main__":
