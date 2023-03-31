@@ -49,7 +49,7 @@ class GUI(UI):
             y += self.cell_size
 
     def run(self) -> None:
-        #Copy from previous assignment
+        # Copy from previous assignment
         pygame.init()
         clock = pygame.time.Clock()
         pygame.display.set_caption("Game of Life")
@@ -80,6 +80,7 @@ class GUI(UI):
             pygame.display.flip()
             clock.tick(self.speed)
         pygame.quit()
+
 
 if __name__ == "__main__":
     life = GameOfLife((40, 50), max_generations=50)
