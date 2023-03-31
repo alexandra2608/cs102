@@ -79,7 +79,6 @@ class GameOfLife:
         self.prev_generation = self.curr_generation
         getting_next_gen = self.get_next_generation()
         self.curr_generation = getting_next_gen
-
         self.generations += 1
 
     @property
@@ -100,8 +99,7 @@ class GameOfLife:
         field = self.curr_generation
         if field == buffer:
             return False
-        else:
-            return True
+        return True
 
     @staticmethod
     def from_file(filename: pathlib.Path) -> "GameOfLife":
