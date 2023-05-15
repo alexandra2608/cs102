@@ -1,9 +1,8 @@
-from bayes import NaiveBayesClassifier
 import csv
 import string
 import unittest
 
-
+from bayes import NaiveBayesClassifier
 
 PATH_FOR_GIT = "/home/runner/work/cs102/cs102/homework06/data/"
 

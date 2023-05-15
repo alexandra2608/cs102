@@ -1,10 +1,13 @@
-from bayes import NaiveBayesClassifier
-from bottle import error, redirect, request, route, run, template  # type: ignore
-from db import News, session
-from scraputils import get_news
-import nltk  # type: ignore
 import pickle
 import string
+
+import nltk  # type: ignore
+from bottle import (error, redirect, request, route, run,  # type: ignore
+                    template)
+
+from bayes import NaiveBayesClassifier
+from db import News, session
+from scraputils import get_news
 
 
 @route("/")
