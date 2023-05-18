@@ -16,6 +16,7 @@ def news_list():
     return template("news_template", rows=rows)
 
 
+
 @route("/add_label/")
 def add_label():
     s = session()
@@ -80,6 +81,7 @@ def classify_news():
                 third_priority.append(row)
 
     recs = first_priority + second_priority + third_priority
+    print(len(recs))
     return recs
 
 
@@ -88,15 +90,6 @@ def recommendations():
     """Recommendations from good to never"""
     s = session()
     recs = classify_news()
-    news = s.query(News).filter(News.label != None).all()
-    first_priority, second_priority, third_priority = [], [], []
-    for piece in news:
-        match piece.label:
-            case "good":
-                first_priority.append(piece)
-            case "maybe":
-                second_priority.append(piece)
-            case "never":
-                third_priority.append(piece)
-    res = first_priority + second_priority + third_priority
-    return template("news_recommendations", rows=res)
+    return template("news_recommendations", rows=recs)
+
+run(host='localhost', port=8080)

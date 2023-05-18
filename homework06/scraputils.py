@@ -52,7 +52,7 @@ def get_news(url, n_pages=1):
     return news
 
 
-if __name__ == "__main__":
+if __name__ == "main":
     url = "https://news.ycombinator.com/newest"
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
