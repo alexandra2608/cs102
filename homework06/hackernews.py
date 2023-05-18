@@ -16,7 +16,6 @@ def news_list():
     return template("news_template", rows=rows)
 
 
-
 @route("/add_label/")
 def add_label():
     s = session()
@@ -92,4 +91,5 @@ def recommendations():
     recs = classify_news()
     return template("news_recommendations", rows=recs)
 
-run(host='localhost', port=8080)
+
+run(host="localhost", port=8080)
