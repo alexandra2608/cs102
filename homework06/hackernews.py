@@ -90,6 +90,3 @@ def recommendations():
     s = session()
     recs = classify_news()
     return template("news_recommendations", rows=recs)
-
-
-run(host="localhost", port=8080)
