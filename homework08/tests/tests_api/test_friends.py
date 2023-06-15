@@ -7,7 +7,7 @@ import responses
 from homework08.vkapi.friends import (  # type: ignore
     FriendsResponse,
     get_friends,
-    get_mutual
+    get_mutual,
 )
 
 
