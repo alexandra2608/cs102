@@ -3,7 +3,12 @@ import time
 import unittest
 
 import responses
-from homework08.vkapi.friends import FriendsResponse, get_friends, get_mutual  # type: ignore
+
+from homework08.vkapi.friends import (  # type: ignore
+    FriendsResponse,
+    get_friends,
+    get_mutual
+)
 
 
 class FriendsTestCase(unittest.TestCase):

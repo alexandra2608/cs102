@@ -2,6 +2,7 @@ import re
 import unittest
 
 import responses
+
 from homework08.research.network import ego_network  # type: ignore
 
 
