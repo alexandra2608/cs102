@@ -20,8 +20,8 @@ def ego_network(
     social_graph = []
 
     if not friends:
-        friends_resp = get_friends(user_id=user_id, fields=["nickname"])
-        friends = [user["id"] for user in friends_resp.items if not user.get("deactivated")]
+        friends_resp = get_friends(user_id=user_id, fields=["nickname"])  # type: ignore
+        friends = [user["id"] for user in friends_resp.items if not user.get("deactivated")]  # type: ignore
 
     mutuals = get_mutual(user_id, target_uids=friends)
     for person in mutuals:
@@ -87,4 +87,4 @@ if __name__ == "__main__":
 
     friends = get_friends(user_id=225953999, fields=["first_name", "last_name"]).items
     clusters = get_communities(net)
-    print(describe_communities(clusters, friends))
+    print(describe_communities(clusters, friends))  # type: ignore

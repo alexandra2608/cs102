@@ -16,7 +16,7 @@ def age_predict(user_id: int) -> tp.Optional[float]:
 
     for friend in get_friends(user_id, fields=["bdate"]).items:
         try:
-            ages.append(datetime.strptime(friend["bdate"], "%d.%m.%Y").year)
+            ages.append(datetime.strptime(friend["bdate"], "%d.%m.%Y").year)  # type: ignore
         except (KeyError, ValueError):
             pass
 
