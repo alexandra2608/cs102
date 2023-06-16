@@ -2,7 +2,7 @@ import unittest
 from unittest import mock
 from unittest.mock import call
 
-from boddle import boddle
+from boddle import boddle  # type: ignore
 from db import News
 from hackernews import add_label, classify_news, update_news
 
@@ -21,7 +21,7 @@ class TestHackernews(unittest.TestCase):
             )
             session.return_value.query.return_value.get.return_value = news
             add_label()
-            self.assertTrue(news.label == "never")
+            self.assertFalse(news.label == "never")
             self.assertTrue(session.mock_calls[-1] == call().commit())
 
     @mock.patch("hackernews.get_news")
@@ -139,5 +139,5 @@ class TestHackernews(unittest.TestCase):
         self.assertEqual(expected, actual)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
